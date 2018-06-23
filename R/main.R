@@ -12,15 +12,17 @@ engine <- function(word){
   return(e-s)
 }
 
-newGame <- function(nwords = 10, difficulty = c('easy', 'medium', 'hard')){
+newGame <- function(nwords = 10, difficulty = c('easy', 'medium', 'hard'), seed = NULL){
     difficulty <- match.arg(difficulty)
     if(!length(nwords) == 1L & !as.numeric(nwords) > 0) stop('Please ensure you provide a single number larger than 0!)')
     if(!has_keypress_support()) stop('woRdsmith is not supported by GUIs, please run this game in terminal (windows: Rterm.exe, Max/Linux run R from terminal).')
     message('Loading game data')
     data(words)
     # Generate a seed
+    if(is.null(seed)){
 	seed <- 2147483648
-    while(seed > 2147483647) seed <- as.numeric(paste0(sample(1:1000, 3), collapse=''))
+        while(seed > 2147483647) seed <- as.numeric(paste0(sample(1:1000, 3), collapse=''))
+    }
     set.seed(seed)
     # Select sample words
     wordset <- switch(difficulty,
