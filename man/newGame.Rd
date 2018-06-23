@@ -16,6 +16,9 @@ The number of words to play with. Default is 10.
 \item{difficulty}{
 The difficulty of the game, a choice of easy, medium or hard. Easy contains only lower case letters, medium includes upper case and hard contains both and will additionally join two words together.
 }
+\item{seed}{
+An integer specify the seed to use if desired
+}
 }
 
 \value{
