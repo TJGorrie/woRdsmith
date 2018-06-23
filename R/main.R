@@ -13,9 +13,10 @@ engine <- function(word){
 }
 
 newGame <- function(nwords = 10, difficulty = c('easy', 'medium', 'hard'), seed = NULL){
+    if(!has_keypress_support()) stop('woRdsmith is not supported by GUIs, please run this game in terminal (windows: Rterm.exe, Max/Linux run R from terminal).')
     difficulty <- match.arg(difficulty)
     if(!length(nwords) == 1L & !as.numeric(nwords) > 0) stop('Please ensure you provide a single number larger than 0!)')
-    if(!has_keypress_support()) stop('woRdsmith is not supported by GUIs, please run this game in terminal (windows: Rterm.exe, Max/Linux run R from terminal).')
+    if(!is.null(seed) & (!length(seed) == 1L | !is.numeric(seed))) stop('Provide a single, numeric, input to seed')
     message('Loading game data')
     data(words)
     # Generate a seed
