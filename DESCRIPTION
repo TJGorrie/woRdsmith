@@ -1,0 +1,10 @@
+Package: woRdsmith
+Title: woRdsmith
+Version: 0.0.1
+Authors@R: person("Tyler", "Gorrie-Stone", email = "tgorri@essex.ac.uk",
+                  role = c("aut", "cre"))
+Description: Little R typing game - works only in terminal.
+Depends: R (>= 3.1.0), keypress, stringr
+Collate: main.R
+License: None
+LazyData: true
