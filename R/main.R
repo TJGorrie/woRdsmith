@@ -2,9 +2,9 @@ engine <- function(word){
   breakdown <- strsplit(word, '')[[1]]
   message(word)
   s <- Sys.time()
-  for(i in seq_along(breakdown)){
+  for(i in breakdown){
     x <- FALSE
-    while(!x) x <- ((y <- keypress()) == breakdown[i])
+    while(!x) x <- ((y <- keypress()) == i)
 	cat(y)
   }
   e <- Sys.time()
@@ -27,19 +27,19 @@ newGame <- function(nwords = 10, difficulty = c('easy', 'medium', 'hard'), seed 
     set.seed(seed)
     # Select sample words
     wordset <- switch(difficulty,
-                    'easy' = {sample(tolower(words), nwords)},
-			  		'medium' ={sample(words, nwords)},
-					'hard' = {
-					    hardwords <- sample(words, nwords*2)
-					    paste(hardwords[c(T,F)], hardwords[c(F,T)])
-					    }
-					)
+                'easy' = {sample(tolower(words), nwords)},
+		'medium' ={sample(words, nwords)},
+		'hard' = {
+			hardwords <- sample(words, nwords*2)
+			paste(hardwords[c(T,F)], hardwords[c(F,T)])
+			}
+		)
     game <- sapply(wordset, engine)
 	results <- list('Difficulty' = difficulty,
 	                'Number of Words' = nwords,
-					'Seed' = seed,
-					'Total Time' = sum(game),
-					'Details' = data.frame(Words = wordset, Time = game, stringsAsFactors=FALSE))
+			'Seed' = seed,
+			'Total Time' = sum(game),
+			'Details' = data.frame(Words = wordset, Time = game, stringsAsFactors=FALSE))
 	class(results) <- 'results'
 	results
 }
@@ -49,7 +49,7 @@ print.results <- function(x){
 	message(sprintf('The seed used was: %s on %s difficulty', x[['Seed']], x[['Difficulty']]))
 	message(sprintf('The average time per word was %s seconds', mean(x[['Details']][,2], na.rm = TRUE)))
 	words <- x[['Details']][,1]
-	message(sprintf('The longest and shortest words were: %s and %s. \n The average length of each word was %s characters.\n',
+	message(sprintf('The longest and shortest words were: %s and %s. \nThe average length of each word was %s characters.\n',
 	    words[which.max(nchar(words))],words[which.min(nchar(words))],mean(nchar(words),na.rm = T)))
     invisible(x)
 }
