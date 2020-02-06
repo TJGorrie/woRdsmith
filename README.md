@@ -1,5 +1,5 @@
 # woRdsmith
-A quick R wordtyping R game
+A quick wordtyping R game
 ## Installation
 You should be able to easily install the package straight from github using devtools
 ```
@@ -8,4 +8,4 @@ devtools::install_github('tjgorrie/woRdsmith')
 ```
 
 ## Quick guide
-The game can be start by running the `newGame()` function.
+The game can be started by running the `newGame()` function.
